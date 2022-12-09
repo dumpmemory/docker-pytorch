@@ -1,11 +1,78 @@
+1.13.0-cuda11.7-ubuntu22.04:
+  extra_tags:
+  - 1.13.0-cuda11.7
+  - latest
+  template:
+    path: templates/20221208.dockerfile.jinja2
+    vars:
+      base_image: nvidia/cuda:11.7.1-base-ubuntu22.04
+    conda_channels:
+      - conda-forge
+      - nvidia
+    conda_dependencies:
+      - pip=22.3.1
+      - python=3.10.8
+      - pytorch::pytorch-cuda=11.7
+      - pytorch::pytorch=1.13.0=py3.10_cuda11.7_cudnn8.5.0_0
+      - pytorch::torchvision=0.14.0=py310_cu117
+      - scipy=1.9.3
+      - tqdm=4.64.1
+    # By default pytorch-cuda installs many gigabytes of unused Conda packages. We will manually
+    # exclude some of these unrequired packages to reduce the image size.
+    # https://discuss.pytorch.org/t/large-cuda-dependencies-in-pytorch-1-13-conda-installation/165068
+    exclude_conda_packages:
+      - nvidia/linux-64/cuda-cuobjdump
+      - nvidia/linux-64/cuda-cuxxfilt
+      - nvidia/linux-64/cuda-demo-suite
+      - nvidia/linux-64/cuda-documentation
+      - nvidia/linux-64/cuda-driver-dev
+      - nvidia/linux-64/cuda-gdb
+      - nvidia/linux-64/cuda-nsight
+      - nvidia/linux-64/cuda-nvcc
+      - nvidia/linux-64/cuda-nvml-dev
+      - nvidia/linux-64/cuda-nvprune
+      - nvidia/linux-64/nsight-compute
+      - nvidia/linux-64/cuda-command-line-tools
+      - nvidia/linux-64/cuda-compiler
+      - nvidia/linux-64/cuda-nsight-compute
+      - nvidia/linux-64/cuda-nvvp
+      - nvidia/linux-64/libcublas-dev
+      - nvidia/linux-64/libcufft-dev
+      - nvidia/linux-64/libcufile-dev
+      - nvidia/linux-64/libcurand-dev
+      - nvidia/linux-64/libcusolver-dev
+      - nvidia/linux-64/libcusparse-dev
+      - nvidia/linux-64/libnpp-dev
+      - nvidia/linux-64/libnvjpeg-dev
+      - nvidia/linux-64/cuda-libraries-dev
+      - nvidia/linux-64/cuda-visual-tools
+
+1.13.0-nocuda-ubuntu22.04:
+  extra_tags:
+  - 1.13.0-nocuda
+  template:
+    path: templates/20221208.dockerfile.jinja2
+    vars:
+      base_image: ubuntu:22.04
+    conda_channels:
+      - conda-forge
+    conda_dependencies:
+      - pip=22.3.1
+      - python=3.10.8
+      - pytorch::cpuonly
+      - pytorch::pytorch
+      - pytorch::torchvision
+      - scipy=1.9.3
+      - tqdm=4.64.1
+
 1.11.0-cuda11.5-ubuntu20.04:
   extra_tags:
     - 1.11.0-cuda11.5
-    - latest
   template:
     path: templates/20220603.dockerfile.jinja2
     vars:
       base_image: nvidia/cuda:11.5.1-base-ubuntu20.04
+    conda_lock: false
     conda_channels:
       - conda-forge
     conda_dependencies:
@@ -27,6 +94,7 @@
     path: templates/20220603.dockerfile.jinja2
     vars:
       base_image: ubuntu:20.04
+    conda_lock: false
     conda_channels:
       - conda-forge
     conda_dependencies:
@@ -47,6 +115,7 @@
     path: templates/20220207.dockerfile.jinja2
     vars:
       base_image: nvidia/cuda:11.3.1-base-ubuntu20.04
+    conda_lock: false
     conda_dependencies:
       - conda-forge::cudatoolkit=11.3.1
       - numpy=1.21.2
@@ -66,6 +135,7 @@
     path: templates/20220207.dockerfile.jinja2
     vars:
       base_image: ubuntu:20.04
+    conda_lock: false
     conda_dependencies:
       - numpy=1.21.2
       - pillow=8.4.0
@@ -78,6 +148,7 @@
       - tqdm=4.62.3
 
 1.10.0-cuda11.3-ubuntu20.04:
+  deprecated: true
   extra_tags:
   - 1.10.0-cuda11.3
   template:
@@ -96,6 +167,7 @@
       - tqdm=4.62.3
 
 1.10.0-nocuda-ubuntu20.04:
+  deprecated: true
   extra_tags:
   - 1.10.0-nocuda
   template:
@@ -113,6 +185,7 @@
       - tqdm=4.62.3
 
 1.8.1-cuda11.1-ubuntu20.04:
+  deprecated: true
   extra_tags:
   - 1.8.1-cuda11.1
   template:
@@ -128,6 +201,7 @@
          && conda clean -ya
 
 1.7.0-cuda11.0-ubuntu20.04:
+  deprecated: true
   extra_tags:
   - 1.7.0-cuda11.0
   template:

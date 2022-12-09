@@ -1,9 +1,8 @@
 ## PyTorch Docker image
 
-[![Docker Automated build](https://img.shields.io/docker/automated/anibali/pytorch)](https://hub.docker.com/r/anibali/pytorch/)
-[![Docker Automated build](https://img.shields.io/docker/image-size/anibali/pytorch/latest)](https://hub.docker.com/r/anibali/pytorch/)
-[![Docker Automated build](https://img.shields.io/docker/pulls/anibali/pytorch)](https://hub.docker.com/r/anibali/pytorch/)
-[![Docker Automated build](https://img.shields.io/docker/v/anibali/pytorch/latest)](https://hub.docker.com/r/anibali/pytorch/)
+[![Docker image version](https://img.shields.io/docker/image-size/anibali/pytorch/latest)](https://hub.docker.com/r/anibali/pytorch/)
+[![Docker image pulls](https://img.shields.io/docker/pulls/anibali/pytorch)](https://hub.docker.com/r/anibali/pytorch/)
+[![Docker image size](https://img.shields.io/docker/v/anibali/pytorch/latest)](https://hub.docker.com/r/anibali/pytorch/)
 
 Ubuntu + PyTorch + CUDA (optional)
 
@@ -38,10 +37,10 @@ access within Docker containers. This can be found at
 Prebuilt images are available on Docker Hub under the name
 [anibali/pytorch](https://hub.docker.com/r/anibali/pytorch/).
 
-For example, you can pull an image with PyTorch 1.8.1 and CUDA 11.1 using:
+For example, you can pull an image with PyTorch 1.13.0 and CUDA 11.7 using:
 
 ```bash
-$ docker pull anibali/pytorch:1.8.1-cuda11.1
+$ docker pull anibali/pytorch:1.13.0-cuda11.7
 ```
 
 
@@ -110,12 +109,12 @@ The recommended way of adding additional dependencies to an image is to create
 your own Dockerfile using one of the PyTorch images from this project as a base.
 
 For example, let's say that you require OpenCV and wish to work with PyTorch
-1.8.1. You can create your own Dockerfile using
-`anibali/pytorch:1.8.1-cuda11.1-ubuntu20.04` as the base image and install
+1.13.0. You can create your own Dockerfile using
+`anibali/pytorch:1.13.0-cuda11.7-ubuntu22.04` as the base image and install
 OpenCV using additional build steps:
 
 ```dockerfile
-FROM anibali/pytorch:1.8.1-cuda11.1-ubuntu20.04
+FROM anibali/pytorch:1.13.0-cuda11.7-ubuntu22.04
 
 # Set up time zone.
 ENV TZ=UTC
